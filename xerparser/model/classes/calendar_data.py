@@ -28,11 +28,11 @@ class CalendarData:
     def __init__(self, text):
         self.text = text
         cal2 = []
-        cal = re.findall("\(\d\|\|\d+\(\)", text)
+        cal = re.findall(r"\(\d\|\|\d+\(\)", text)
         for c in cal:
             c2 = c.split("||")[1]
             cal2.append(c2.split("()")[0])
-        val = re.split("\(\d\|\|\d+\(\)", text.strip())
+        val = re.split(r"\(\d\|\|\d+\(\)", text.strip())
         x = 0
 
         self.data = dict()
@@ -60,8 +60,8 @@ class CalendarData:
         lst_dow = []
         for day, d in zip(days[1:], dys):
             dow = int(d.replace("(0||", "").replace(")", "").replace("(", ""))
-            starts = re.findall("s\|\d\d\:\d\d", day)
-            finishes = re.findall("f\|\d\d\:\d\d", day)
+            starts = re.findall(r"s\|\d\d\:\d\d", day)
+            finishes = re.findall(r"f\|\d\d\:\d\d", day)
 
             day_dict = {'DayOfWeek': dayName[dow], 'WorkTimes': [], 'ifc': None}
             for s, f in zip(starts, finishes):
@@ -86,7 +86,7 @@ class CalendarData:
     def get_days(self):
         if not self.data:
             return
-        first = re.findall("\(\d\|\|\d\(\)(.*?)\)\)", self.text)
+        first = re.findall(r"\(\d\|\|\d\(\)(.*?)\)\)", self.text)
         days = dict()
         i = 0
         for x in first:
