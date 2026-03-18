@@ -8,7 +8,7 @@ def readme():
 
 setup(
     name="PyP6Xer_SafeTypes",
-    version="1.015.00",
+    version="1.016.00",
     long_description=readme(),
     long_description_content_type="text/markdown",
     packages=[
